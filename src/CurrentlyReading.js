@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class Bookshelf extends Component{
+class CurrentlyReading extends Component{
 
     render() {
 
@@ -41,13 +41,10 @@ class Bookshelf extends Component{
                         </div>
                     </div>
                 </div>
-                <div className="open-search">
-                    <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
-                </div>
             </div>
                 )
     }
 
 }
 
-export default Bookshelf
+export default CurrentlyReading
