@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-class WantRead extends Component{
+class WantRead extends Component {
 
     render() {
 
-        const { books , onupdateBook} = this.props
-
+        const {books, onupdateBook} = this.props
         const wantToReadBooks = books.filter(shelf => shelf.shelf === `wantToRead`)
 
         return (
@@ -20,9 +19,15 @@ class WantRead extends Component{
                                         <li key={book.id}>
                                             <div className="book">
                                                 <div className="book-top">
-                                                    <div className="book-cover" style={{ width: 128 , height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                                    <div className="book-cover" style={{
+                                                        width: 128,
+                                                        height: 188,
+                                                        backgroundImage: `url(${book.imageLinks.thumbnail})`
+                                                    }}></div>
                                                     <div className="book-shelf-changer">
-                                                        <select onChange={(event) => onupdateBook(book,event.target.value)} value={book.shelf}>
+                                                        <select
+                                                            onChange={(event) => onupdateBook(book, event.target.value)}
+                                                            value={book.shelf}>
                                                             <option value="none" disabled>Move to...</option>
                                                             <option value="currentlyReading">Currently Reading</option>
                                                             <option value="wantToRead">Want to Read</option>
@@ -44,7 +49,6 @@ class WantRead extends Component{
             </div>
         )
     }
-
 }
 
 export default WantRead

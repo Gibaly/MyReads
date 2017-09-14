@@ -1,13 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
-class Read extends Component{
+class Read extends Component {
 
     render() {
 
-        const { books , onupdateBook} = this.props
-
+        const {books, onupdateBook} = this.props
         const ReadBooks = books.filter(shelf => shelf.shelf === `read`)
-
 
         return (
             <div>
@@ -21,9 +19,15 @@ class Read extends Component{
                                         <li key={book.id}>
                                             <div className="book">
                                                 <div className="book-top">
-                                                    <div className="book-cover" style={{ width: 128 , height: 188, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                                                    <div className="book-cover" style={{
+                                                        width: 128,
+                                                        height: 188,
+                                                        backgroundImage: `url(${book.imageLinks.thumbnail})`
+                                                    }}></div>
                                                     <div className="book-shelf-changer">
-                                                        <select onChange={(event) => onupdateBook(book,event.target.value)} value={book.shelf}>
+                                                        <select
+                                                            onChange={(event) => onupdateBook(book, event.target.value)}
+                                                            value={book.shelf}>
                                                             <option value="none" disabled>Move to...</option>
                                                             <option value="currentlyReading">Currently Reading</option>
                                                             <option value="wantToRead">Want to Read</option>
@@ -45,7 +49,6 @@ class Read extends Component{
             </div>
         )
     }
-
 }
 
 export default Read
