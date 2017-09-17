@@ -18,6 +18,7 @@ class BooksApp extends Component {
                     return prevState;
                 }
                 else{
+                    book.shelf=shelf;
                     prevState.books.push(book);
                     return prevState;
                 }
@@ -39,6 +40,7 @@ class BooksApp extends Component {
                 <Route path='/search' render={() => (
                     <div>
                         <Search
+                            myBooks={this.state.books}
                             onupdateBook={this.updateBook}
                         />
                     </div>

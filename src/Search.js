@@ -7,14 +7,28 @@ import * as BooksAPI from './BooksAPI'
 class Search extends Component {
 
     state = {
-        books: [],
+        searchBooks: [],
     }
 
-    bookSearch = (query)  => {
-        BooksAPI.search(query).then(books => {
-            this.setState({books})
+    bookSearch = (query) => {
+        BooksAPI.search(query).then(searchBooks => {
+            searchBooks  = Array.isArray(searchBooks) ? searchBooks : [];
+            searchBooks.forEach(b => {
+                    let existing = this.props.myBooks.find(MB => MB.id === b.id);
+                    b.shelf = existing ? existing.shelf : 'none'
+                    if (!b.imageLinks || !b.imageLinks.thumbnail) {
+                        b.imageLinks = {
+                            thumbnail:'http://sightlinemediaentertainment.com/wp-content/uploads/2015/09/placeholder-cover.jpg'
+                        }
+                    }
+                }
+            );
+            this.setState({searchBooks})
         })
     }
+
+
+
     render() {
         const { onupdateBook} = this.props
 
@@ -41,7 +55,7 @@ class Search extends Component {
                         <div className="bookshelf">
                             <div className="bookshelf-books">
                                 <ol className="books-grid">
-                                    {this.state.books.map((book) => (
+                                    {this.state.searchBooks.map((book) => (
                                         <li key={book.id}>
                                             <Book
                                                 book={book}
